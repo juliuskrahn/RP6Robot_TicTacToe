@@ -7,8 +7,7 @@
 
 void copyCharArrayLen10(char* a_orig, char* a_copy)  
 {
-    uint8_t i;
-    for(i=0; i<10; i++){
+    for(uint8_t i=0; i<10; i++){
         a_copy[i] = a_orig[i];
     }
 }
