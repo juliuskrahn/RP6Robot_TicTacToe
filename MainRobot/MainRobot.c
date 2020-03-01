@@ -5,17 +5,16 @@
 #include "transmitLib.c" 
 
 
-void copyCharArrayLen10(char* a_orig, char* a_copy)  // array orig -> array copy
+void copyCharArrayLen10(char* a_orig, char* a_copy)  
 {
     uint8_t i;
-    for(i=0; i<10; i++)
-    {
+    for(i=0; i<10; i++){
         a_copy[i] = a_orig[i];
     }
 }
 
 
-int random_n(uint8_t max)  // return n (0 <= n <= max)
+int random_n(uint8_t max)  
 {
     task_ADC();
     uint16_t n = adcLSL;
@@ -24,7 +23,7 @@ int random_n(uint8_t max)  // return n (0 <= n <= max)
 }
 
 
-int getWinner(char* board)  // return 1(Player) / 2(Computer) / 0(no winner)
+int getWinner(char* board)  
 {
     // Player
     if(board[1] == 'X' && board[2] == 'X' && board[3] == 'X'){return 1;}
@@ -68,24 +67,21 @@ int newRound(void)
 
     writeString_P("Neue Runde? (ja/ nein): ");
     while (getBufferLength() == 0) {}  // wait until buffer is not empty
+    char ans = readChar();  
 
-    char ans = readChar();  // read char
     while (getBufferLength() > 0) { readChar(); }  // clear bufferr
 
     if (ans == 'j' || ans == 'J') {
         writeString_P("\n\n");
         return true;
     }
-    else {
-        return false;
-    }
+    return false;
 }
 
 
 void drawBoardInTerminal(char * board)
 {
-    uint8_t i;
-    for(i=1; i<=7; i+=3){
+    for(uint8_t i=1; i<=7; i+=3){
         writeString_P(" ");
         writeChar(board[i]);
         writeString_P(" | ");
@@ -106,10 +102,9 @@ void makeTurnPlayer(char* board)
     while (getBufferLength() > 0) { readChar(); }  // clear bufferr
 
     while (true) {  
-
         writeString_P("Gib an in welches Feld du ein X setzen moechtest (1-9): ");
-        while (getBufferLength() == 0) {}  // wait until buffer is not empty
 
+        while (getBufferLength() == 0) {}  // wait until buffer is not empty
         field_char = readChar();  
 
         while (getBufferLength() > 0) { readChar(); }  // clear bufferr
@@ -244,6 +239,7 @@ int makeTurnComputer(char * board)
 int main(void) 
 {
     initRobotBase();
+
     powerON();
 	
 	initByteReception();
@@ -255,7 +251,7 @@ int main(void)
 
     char board[10];
     
-    uint8_t winner = 0;  // 1 = player; 2 = computer
+    uint8_t winner = 0;  // (1 = player; 2 = computer)
 
     while (true)  
     {   // alternately player first then computer first

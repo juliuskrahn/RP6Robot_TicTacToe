@@ -51,7 +51,7 @@ void driveToField(uint8_t field)
 }
 
 
-void driveBack(uint8_t field)
+void driveBackFromField(uint8_t field)
 {
     switch(field){
         case 1:
@@ -97,18 +97,11 @@ void driveBack(uint8_t field)
 }
 
 
-void drawCircle(uint8_t field)
+void drawCircle(void)
 {   
-    driveToField(field);
-
     setServo(6);  // ->  |
     rotate(40, RIGHT, 360, true);
     setServo(18);  // ->  _
-
-    driveBack(field);
-	
-	sendByte(MainRobotAdress, 1);  // tell MainRobot that DrawRobot finished drawing
-	task_ACS();
 }
 
 
@@ -123,7 +116,14 @@ int main(void)
         task_ACS();
 
         if (isByteDa()) {
-            drawCircle(getByte());
+            uint8_t field = getByte();
+
+            driveToField(field);
+            drawCircle();
+            driveBackFromField(field);
+
+            sendByte(MainRobotAdress, 1);  // tell MainRobot that DrawRobot finished drawing
+            task_ACS();
         }
     }
     return 0;
