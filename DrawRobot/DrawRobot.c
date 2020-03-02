@@ -60,38 +60,38 @@ void driveBackFromField(uint8_t field)
         case 2:
             move(160, BWD, DIST_CM(30), true);
             rotate(40, LEFT, 90, true);
-            move(160, BWD, DIST_CM(90), true);
+            move(160, BWD, DIST_CM(100), true);
             break;
         case 3:
             move(160, BWD, DIST_CM(60), true);
             rotate(40, LEFT, 90, true);
-            move(160, BWD, DIST_CM(90), true);
+            move(160, BWD, DIST_CM(100), true);
             break;
         case 4:
-            move(160, BWD, DIST_CM(60), true);
+            move(160, BWD, DIST_CM(70), true);
             break;
         case 5:
             move(160, BWD, DIST_CM(30), true);
             rotate(40, LEFT, 90, true);
-            move(160, BWD, DIST_CM(60), true);
+            move(160, BWD, DIST_CM(70), true);
             break;
         case 6:
             move(160, BWD, DIST_CM(60), true);
             rotate(40, LEFT, 90, true);
-            move(160, BWD, DIST_CM(60), true);
+            move(160, BWD, DIST_CM(70), true);
             break;
         case 7:
-            move(160, BWD, DIST_CM(30), true);
+            move(160, BWD, DIST_CM(40), true);
             break;
         case 8:
             move(160, BWD, DIST_CM(30), true);
             rotate(40, LEFT, 90, true);
-            move(160, BWD, DIST_CM(30), true);
+            move(160, BWD, DIST_CM(40), true);
             break;
         case 9:
             move(160, BWD, DIST_CM(60), true);
             rotate(40, LEFT, 90, true);
-            move(160, BWD, DIST_CM(30), true);
+            move(160, BWD, DIST_CM(40), true);
             break;
     }
 }
@@ -109,6 +109,9 @@ int main(void)
 {
     initRobotBase();
     powerON();
+    
+    initServo();
+    setServo(18);  // ->  _
 
     initByteReception();
 

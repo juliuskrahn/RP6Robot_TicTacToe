@@ -242,9 +242,6 @@ int main(void)
     powerON();
 	
 	initByteReception();
-    
-    initServo();
-    setServo(18);  // ->  _
 
     writeString_P("Willkommen zu TicTacToe\n");
 
