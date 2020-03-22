@@ -2,7 +2,7 @@
 #define MAINEADRESSE 1
 #define DrawRobotAdress 2
 #define BYTEBEFEHLE 
-#include "transmitLib.c" 
+#include "../../../Bonusmaterial/Signalübertragung/transmitLib.c" 
 
 
 void copyCharArrayLen10(char* a_orig, char* a_copy)  
@@ -268,17 +268,23 @@ int main(void)
             makeTurnPlayer(board);
             drawBoardInTerminal(board);
             mSleep(600);
-            if(boardFull(board)){break;}
             winner = getWinner(board);
-            if(winner){continue;}
+            if(winner){break;}
+			if(boardFull(board)){
+				winner = 3;
+				break;
+			}
 
             makeTurnComputer(board);
             mSleep(1000);
             drawBoardInTerminal(board);
             mSleep(600);
-            if(boardFull(board)){break;}
             winner = getWinner(board);
-            if(winner){continue;}
+            if(winner){break;}
+			if(boardFull(board)){
+				winner = 3;
+				break;
+			}
         }
         
         if(winner==1){  // player won
@@ -313,16 +319,22 @@ int main(void)
             mSleep(1000);
             drawBoardInTerminal(board);
             mSleep(600);
-            if(boardFull(board)){break;}
             winner = getWinner(board);
-            if(winner){continue;}
+            if(winner){break;}
+			if(boardFull(board)){
+				winner = 3;
+				break;
+			}
 
             makeTurnPlayer(board);
             drawBoardInTerminal(board);
             mSleep(600);
-            if(boardFull(board)){break;}
             winner = getWinner(board);
-            if(winner){continue;}
+            if(winner){break;}
+			if(boardFull(board)){
+				winner = 3;
+				break;
+			}
         }
         
         if(winner==1){  // player won
